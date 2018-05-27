@@ -49,7 +49,7 @@ class XiaoAi
 		$this->getRequest();
 	}
 	/**
-	* 日志
+	* log
 	* 
 	* @param string|array $data
 	* 

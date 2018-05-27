@@ -5,7 +5,7 @@
 */
 require('XiaoAi.php');
 
-$xiaoai = new XiaoAi('SJme5xPFn3Jz7VoKMS4cDg==','EEWDjG9f7J/G0kYveAgC/hoq6jKkh2SRa7jW4NuLK+A=',TRUE);
+$xiaoai = new XiaoAi('keyid','secret',TRUE);
 
 $request = $xiaoai->getXiaoAiRequest();
 
