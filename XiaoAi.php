@@ -137,27 +137,61 @@ class XiaoAi
 class XiaoAiRequest
 {
 	const NO_REQUEST = -1;
-	
-	//0：技能进入请求； 1：技能进行中请求;2：请求结束请求
+	/**
+	* skill request start
+	*/
 	const TYPE_START = 0;
+	/**
+	* skill request in intent
+	*/
 	const TYPE_INTENT = 1;
+	/**
+	* skill request end
+	*/
 	const TYPE_END = 2;
 	
+	/**
+	* @var $userInfo user info
+	*/
 	public $userInfo = NULL;
-	public $oauthInfo = NULL;//第三方应用授权信息
-	
+	/**
+	* @var $oauthInfo third party application oauth info
+	*/
+	public $oauthInfo = NULL;
+	/**
+	* @var $requestInfo request info
+	*/
 	public $requestInfo = NULL;
-	
+	/**
+	* @var $requestType request type
+	*/
 	public $requestType = NULL;
+	/**
+	* @var $requestId request id
+	*/
 	public $requestId = NULL;
+	/**
+	* @var $intentInfo intentInfo
+	*/
+	public $intentInfo = NULL;
+	/**
+	* @var $slotInfo slotInfo
+	*/
+	public $slotInfo = NULL;
+	/**
+	* @var $eventInfo event info
+	*/
+	public $eventInfo = NULL;
+	/**
+	* @var $noResponse no response
+	*/
+	public $noResponse = FALSE;
 	
-	public $intentInfo = NULL;//未识别到时的意图
-	public $slotInfo = NULL;//识别到时的意图
-	
-	public $eventInfo = NULL;//事件
-	
-	public $noResponse = FALSE;//未收到回复
-	
+	/**
+	* handle
+	* 
+	* @param array $input
+	*/
 	public function handle($input)
 	{
 		if($input === NULL)
