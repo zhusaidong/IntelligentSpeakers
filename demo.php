@@ -1,7 +1,7 @@
 <?php
 /**
-* test
-* @author Zsdroid [635925926@qq.com]
+* demo
+* @author zhusaidong [zhusaidong@gmail.com]
 */
 require('XiaoAi.php');
 

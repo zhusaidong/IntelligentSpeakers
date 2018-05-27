@@ -5,6 +5,7 @@
 
 	demo.php
 	实现了一个简单的答录机
+	运行时，需设置`keyid`,`secret`
 	
 * 文档
 
