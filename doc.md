@@ -13,8 +13,7 @@ require('XiaoAi.php');
 ```php
 $xiaoai = new XiaoAi('key_id','secret');
 ```
-
-`key_id`,`secret` 可在 [这里](https://xiaoai.mi.com/skills/create/list) 获取
+> `key_id`,`secret` 可在 [这里](https://xiaoai.mi.com/skills/create/list) 获取
 
 * 校验消息
 
@@ -31,19 +30,19 @@ $request = $xiaoai->getXiaoAiRequest();
 * 创建回复对象
 
 ```php
-$respose = new XiaoAiResponse();
+$response = new XiaoAiResponse();
 ```
 
 * 设置回复消息
 
 ```php
-$respose->toSpeak('msg');
+$response->toSpeak('msg');
 ```
 
 * 发送回复
 
 ```php
-$xiaoai->response($respose);
+$xiaoai->response($response);
 ```
 
 ### 说明
@@ -66,12 +65,16 @@ XiaoAiRequest::TYPE_END
 ```php
 toSpeak()
 	简单文本
+
 toDirectivesTTS()
 	复杂文本，如多句话
+
 toDirectivesAudio()
 	播放音频
+
 registerActions()
 	注册动作
+
 registerEvents()
 	注册事件
 ```
