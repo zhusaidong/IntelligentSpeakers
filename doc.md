@@ -4,7 +4,7 @@ Welcome to the XiaoAi Doc!
 
 - ### 使用流程
 
-	1. 初始化 api
+	- 初始化 api
 
 	```php
 	require('XiaoAi.php');
