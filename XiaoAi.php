@@ -316,14 +316,14 @@ class XiaoAiResponse
 	/**
 	* register actions
 	* 
-	* @param string $action_name action name
+	* @param string $actionName action name
 	* @param array $actionProperty action property
 	* 
 	* @return XiaoAiResponse
 	*/
-	public function registerActions($action_name,$actionProperty = NULL)
+	public function registerActions($actionName,$actionProperty = NULL)
 	{
-		$this->registerActions['action'] = $action_name;
+		$this->registerActions['action'] = $actionName;
 		
 		if($actionProperty != NULL)
 		{
@@ -335,13 +335,13 @@ class XiaoAiResponse
 	/**
 	* register events
 	* 
-	* @param string $event_name event name
+	* @param string $eventName event name
 	* 
 	* @return XiaoAiResponse
 	*/
-	public function registerEvents($event_name)
+	public function registerEvents($eventName)
 	{
-		$this->registerEvents['register_events'][] = ['event_name'=>$event_name];
+		$this->registerEvents['register_events'][] = ['event_name'=>$eventName];
 		return $this;
 	}
 	/**

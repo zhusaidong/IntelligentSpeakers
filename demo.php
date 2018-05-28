@@ -49,7 +49,7 @@ if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 						default:
 							$respose
 								->registerEvents(XiaoAiResponse::EVENT_MEDIAPLAYER)
-								->toDirectivesAudio('https://openapi.zhusaidong.cn/xiaoai/ss.mp3');
+								->toDirectivesAudio('audio url');
 							break;
 					}
 				}
