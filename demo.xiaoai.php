@@ -1,35 +1,35 @@
 <?php
-/**
-* demo
-* @author zhusaidong [zhusaidong@gmail.com]
-*/
-require('XiaoAi.php');
+require('./src/autoload.php');
+
+use \speakers\xiaoai\XiaoAi;
+use \speakers\xiaoai\Request;
+use \speakers\xiaoai\Response;
 
 $xiaoai = new XiaoAi('keyid','secret',TRUE);
 
-$request = $xiaoai->getXiaoAiRequest();
+$request = $xiaoai->getRequest();
 
-$respose = new XiaoAiResponse();
+$respose = new Response;
 
 if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 {
 	switch($request->requestType)
 	{
-		case XiaoAiRequest::NO_REQUEST:
+		case Request::NO_REQUEST:
 			$respose->toSpeak('error');
 			break;
-		case XiaoAiRequest::TYPE_START:
+		case Request::TYPE_START:
 			$respose
 				->toDirectivesTTS('欢迎使用')
 				->toDirectivesTTS('开始录音')
-				->registerActions(XiaoAiResponse::ACTION_LEAVE_MSG);
+				->registerActions(Response::ACTION_LEAVE_MSG);
 			break;
-		case XiaoAiRequest::TYPE_INTENT:
+		case Request::TYPE_INTENT:
 			if($request->noResponse)
 			{
 				$respose
 					->toSpeak('请再说一次吧')
-					->registerActions(XiaoAiResponse::ACTION_LEAVE_MSG);
+					->registerActions(Response::ACTION_LEAVE_MSG);
 			}
 			else
 			{
@@ -38,17 +38,17 @@ if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 				{
 					switch($eventInfo['eventType'])
 					{
-						case XiaoAiResponse::EVENT_LEAVEMSG_FINISHED:
+						case Response::EVENT_LEAVEMSG_FINISHED:
 							$msg_file_id = $eventInfo['eventProperty']['msg_file_id'];
 							
 							$respose
 								->toSpeak('开始播放录音')
-								->registerActions(XiaoAiResponse::ACTION_PLAY_MSG,['file_id_list'=>[$msg_file_id]])
-								->registerEvents(XiaoAiResponse::EVENT_MEDIAPLAYER);
+								->registerActions(Response::ACTION_PLAY_MSG,['file_id_list'=>[$msg_file_id]])
+								->registerEvents(Response::EVENT_MEDIAPLAYER);
 							break;
 						default:
 							$respose
-								->registerEvents(XiaoAiResponse::EVENT_MEDIAPLAYER)
+								->registerEvents(Response::EVENT_MEDIAPLAYER)
 								->toDirectivesAudio('audio url');
 							break;
 					}
@@ -59,7 +59,7 @@ if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 				}
 			}
 			break;
-		case XiaoAiRequest::TYPE_END:
+		case Request::TYPE_END:
 			$respose->toSpeak('感谢您的使用');
 			break;
 	}
@@ -68,4 +68,4 @@ else
 {
 	$respose->toSpeak('校验失败');
 }
-$xiaoai->response($respose,$request->requestType == XiaoAiRequest::TYPE_END);
+$xiaoai->response($respose);
