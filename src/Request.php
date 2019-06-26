@@ -1,10 +1,20 @@
 <?php
 /**
-* Request
-*
-* @author zhusaidong [zhusaidong@gmail.com]
-*/
+ * Request
+ *
+ * @author zhusaidong [zhusaidong@gmail.com]
+ */
+
+namespace IntelligentSpeakers;
+
 abstract class Request
 {
-	public abstract function handle($input);
+	/**
+	 * request handle
+	 *
+	 * @param array $input
+	 *
+	 * @return mixed
+	 */
+	public abstract function handle(array $input);
 }

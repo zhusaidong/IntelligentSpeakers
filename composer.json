@@ -1,0 +1,22 @@
+{
+	"name"             :"zhusaidonh/IntelligentSpeakers",
+	"description"      :"intelligent speakers",
+	"minimum-stability":"dev",
+	"license"          :"MIT",
+	"authors"          :[
+		{
+			"name" :"zhusaidong",
+			"email":"zhusaidong@gmail.com"
+		}
+	],
+	"autoload"         :{
+		"psr-4":{
+			"IntelligentSpeakers\\":"src/"
+		}
+	},
+	"require"          :{
+		"php"        :"^7.1",
+		"ext-openssl":"*",
+		"ext-json"   :"*"
+	}
+}

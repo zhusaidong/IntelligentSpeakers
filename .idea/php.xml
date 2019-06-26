@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/../../bin/php/php7.2.18/phpcbf" tool_path="$PROJECT_DIR$/../../bin/php/php7.2.18/phpcs" />
+    </phpcs_settings>
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpRuntimeConfiguration" default_stubs_path="D:\wamp64\www\phpstorm-stubs">
+    <extensions>
+      <extension name="Parle" enabled="true" />
+      <extension name="ZendCache" enabled="true" />
+      <extension name="event" enabled="true" />
+      <extension name="mapscript" enabled="true" />
+      <extension name="msgpack" enabled="true" />
+      <extension name="rdkafka" enabled="true" />
+      <extension name="solr" enabled="true" />
+      <extension name="sync" enabled="true" />
+      <extension name="uopz" enabled="true" />
+      <extension name="xcache" enabled="true" />
+      <extension name="yaf" enabled="true" />
+      <extension name="yar" enabled="true" />
+    </extensions>
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+</project>

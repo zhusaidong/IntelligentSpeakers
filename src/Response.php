@@ -1,10 +1,21 @@
 <?php
 /**
-* Response
-*
-* @author zhusaidong [zhusaidong@gmail.com]
-*/
+ * Response
+ *
+ * @author zhusaidong [zhusaidong@gmail.com]
+ */
+
+namespace IntelligentSpeakers;
+
 abstract class Response
 {
-	public abstract function getResponse($request,$params = []);
+	/**
+	 * get response
+	 *
+	 * @param Request $request
+	 * @param array   $params
+	 *
+	 * @return array
+	 */
+	public abstract function getResponse(Request $request, array $params = []) : array;
 }

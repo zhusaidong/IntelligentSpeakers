@@ -1,95 +1,94 @@
 <?php
 /**
-* Request
-* 
-* @author zhusaidong [zhusaidong@gmail.com]
-*/
-namespace speakers\xiaoai;
+ * Request
+ *
+ * @author zhusaidong [zhusaidong@gmail.com]
+ */
+namespace IntelligentSpeakers\speakers\xiaoai;
 
-use Request as BaseRequest;
+use IntelligentSpeakers\Request as BaseRequest;
 
 class Request extends BaseRequest
 {
 	const NO_REQUEST = -1;
 	/**
-	* skill request start
-	*/
+	 * skill request start
+	 */
 	const TYPE_START = 0;
 	/**
-	* skill request in intent
-	*/
+	 * skill request in intent
+	 */
 	const TYPE_INTENT = 1;
 	/**
-	* skill request end
-	*/
+	 * skill request end
+	 */
 	const TYPE_END = 2;
 	
 	/**
-	* @var $userInfo user info
-	*/
+	 * @var array $userInfo user info
+	 */
 	public $userInfo = NULL;
 	/**
-	* @var $oauthInfo third party application oauth info
-	*/
+	 * @var array $oauthInfo third party application oauth info
+	 */
 	public $oauthInfo = NULL;
 	/**
-	* @var $requestInfo request info
-	*/
+	 * @var $requestInfo request info
+	 */
 	public $requestInfo = NULL;
 	/**
-	* @var $requestType request type
-	*/
+	 * @var $requestType request type
+	 */
 	public $requestType = NULL;
 	/**
-	* @var $requestId request id
-	*/
+	 * @var $requestId request id
+	 */
 	public $requestId = NULL;
 	/**
-	* @var $intentInfo intentInfo
-	*/
+	 * @var array $intentInfo intentInfo
+	 */
 	public $intentInfo = NULL;
 	/**
-	* @var $slotInfo slotInfo
-	*/
+	 * @var array $slotInfo slotInfo
+	 */
 	public $slotInfo = NULL;
 	/**
-	* @var $eventInfo event info
-	*/
+	 * @var array $eventInfo event info
+	 */
 	public $eventInfo = NULL;
 	/**
-	* @var $noResponse no response
-	*/
+	 * @var array $noResponse no response
+	 */
 	public $noResponse = FALSE;
 	
 	/**
-	* handle
-	* 
-	* @param array $input
-	*/
-	public function handle($input)
+	 * request handle
+	 *
+	 * @param array $input
+	 *
+	 * @return mixed
+	 */
+	public function handle(array $input)
 	{
-		if($input === NULL)
-		{
-			$this->requestType = -1;
-			return;
-		}
-		$this->userInfo 	= $input['session'];
-		$this->oauthInfo 	= isset($input['context']) ? $input['context'] : NULL;
+		$this->userInfo  = $input['session'];
+		$this->oauthInfo = $input['context'] ?? NULL;
 		
-		$this->requestInfo 	= $request = $input['request'];
-		$this->requestType  = $request['type'];
-		$this->requestId 	= $request['request_id'];
+		$this->requestInfo = $request = $input['request'];
+		$this->requestType = $request['type'];
+		$this->requestId   = $request['request_id'];
 		
-		$this->noResponse 	= isset($request['no_response']) ? $request['no_response'] : FALSE;
-		$this->intentInfo	= isset($request['intent']) ? $request['intent'] : NULL;
-		$this->slotInfo 	= isset($request['slot_info']) ? $request['slot_info'] : NULL;
+		$this->noResponse = $request['no_response'] ?? FALSE;
+		$this->intentInfo = $request['intent'] ?? NULL;
+		$this->slotInfo   = $request['slot_info'] ?? NULL;
 		
 		if(isset($request['event_type']))
 		{
 			$this->eventInfo = [
-				'eventType' 	=> $request['event_type'],
-				'eventProperty'	=> $request['event_property'],
+				'eventType'     => $request['event_type'],
+				'eventProperty' => $request['event_property'],
 			];
 		}
+		
+		return;
 	}
 }

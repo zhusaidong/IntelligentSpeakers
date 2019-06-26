@@ -1,11 +1,11 @@
 <?php
-require('./src/autoload.php');
+require('./vendor/autoload.php');
 
-use \speakers\xiaoai\XiaoAi;
-use \speakers\xiaoai\Request;
-use \speakers\xiaoai\Response;
+use IntelligentSpeakers\speakers\xiaoai\XiaoAi;
+use IntelligentSpeakers\speakers\xiaoai\Request;
+use IntelligentSpeakers\speakers\xiaoai\Response;
 
-$xiaoai = new XiaoAi('keyid','secret',TRUE);
+$xiaoai = new XiaoAi('keyid', 'secret', TRUE);
 
 $request = $xiaoai->getRequest();
 
@@ -19,17 +19,12 @@ if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 			$respose->toSpeak('error');
 			break;
 		case Request::TYPE_START:
-			$respose
-				->toDirectivesTTS('欢迎使用')
-				->toDirectivesTTS('开始录音')
-				->registerActions(Response::ACTION_LEAVE_MSG);
+			$respose->toDirectivesTTS('欢迎使用')->toDirectivesTTS('开始录音')->registerActions(Response::ACTION_LEAVE_MSG);
 			break;
 		case Request::TYPE_INTENT:
 			if($request->noResponse)
 			{
-				$respose
-					->toSpeak('请再说一次吧')
-					->registerActions(Response::ACTION_LEAVE_MSG);
+				$respose->toSpeak('请再说一次吧')->registerActions(Response::ACTION_LEAVE_MSG);
 			}
 			else
 			{
@@ -41,15 +36,12 @@ if($xiaoai->verificationSignature() === XiaoAi::VERIFICATION_SUCCESS)
 						case Response::EVENT_LEAVEMSG_FINISHED:
 							$msg_file_id = $eventInfo['eventProperty']['msg_file_id'];
 							
-							$respose
-								->toSpeak('开始播放录音')
-								->registerActions(Response::ACTION_PLAY_MSG,['file_id_list'=>[$msg_file_id]])
+							$respose->toSpeak('开始播放录音')
+								->registerActions(Response::ACTION_PLAY_MSG, ['file_id_list' => [$msg_file_id]])
 								->registerEvents(Response::EVENT_MEDIAPLAYER);
 							break;
 						default:
-							$respose
-								->registerEvents(Response::EVENT_MEDIAPLAYER)
-								->toDirectivesAudio('audio url');
+							$respose->registerEvents(Response::EVENT_MEDIAPLAYER)->toDirectivesAudio('audio url');
 							break;
 					}
 				}

@@ -1,2 +1,2 @@
-*.csprj
-*.clpprj
+vendor
+.idea
