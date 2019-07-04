@@ -11,9 +11,9 @@ Welcome to the AliGenie IntelligentSpeakers Doc!
 	```php
 	require('./src/autoload.php');
 
-	use \speakers\aligenie\AliGenie;
-	use \speakers\aligenie\Request;
-	use \speakers\aligenie\Response;
+	use IntelligentSpeakers\speakers\aligenie\AliGenie;
+	use IntelligentSpeakers\speakers\aligenie\Request;
+	use IntelligentSpeakers\speakers\aligenie\Response;
 
 	$aligenie = new AliGenie(AliGenie::getPrivateKeyFromFile('private_key'),TRUE);
 	```
