@@ -11,9 +11,9 @@ Welcome to the XiaoAi IntelligentSpeakers Doc!
 	```php
 	require('./src/autoload.php');
 	
-	use \speakers\xiaoai\XiaoAi;
-	use \speakers\xiaoai\Request;
-	use \speakers\xiaoai\Response;
+	use IntelligentSpeakers\speakers\xiaoai\XiaoAi;
+	use IntelligentSpeakers\speakers\xiaoai\Request;
+	use IntelligentSpeakers\speakers\xiaoai\Response;
 	
 	$xiaoai = new XiaoAi('key_id','secret');
 	```
