@@ -6,7 +6,10 @@
  * @author zhusaidong [zhusaidong@gmail.com]
  */
 
-namespace IntelligentSpeakers;
+namespace Zhusaidong\IntelligentSpeakers;
+
+use Zhusaidong\IntelligentSpeakers\Interfaces\RequestInterface;
+use Zhusaidong\IntelligentSpeakers\Interfaces\ResponseInterface;
 
 abstract class Speakers
 {
@@ -48,9 +51,9 @@ abstract class Speakers
 	/**
 	 * get request
 	 *
-	 * @return Request
+	 * @return RequestInterface
 	 */
-	public function getRequest() : Request
+	public function getRequest() : RequestInterface
 	{
 		return $this->request;
 	}
@@ -58,10 +61,10 @@ abstract class Speakers
 	/**
 	 * response
 	 *
-	 * @param Response $response
-	 * @param array    $params
+	 * @param ResponseInterface $response
+	 * @param array            $params
 	 */
-	public function response(Response $response, array $params = [])
+	public function response(ResponseInterface $response, array $params = [])
 	{
 		$output = $response->getResponse($this->request, $params);
 		

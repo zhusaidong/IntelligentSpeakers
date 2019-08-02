@@ -9,13 +9,13 @@ Welcome to the AliGenie IntelligentSpeakers Doc!
 	- 初始化 api
 
 	```php
-	require('./src/autoload.php');
-
-	use IntelligentSpeakers\speakers\aligenie\AliGenie;
-	use IntelligentSpeakers\speakers\aligenie\Request;
-	use IntelligentSpeakers\speakers\aligenie\Response;
-
-	$aligenie = new AliGenie(AliGenie::getPrivateKeyFromFile('private_key'),TRUE);
+    require('../vendor/autoload.php');
+    
+    use Zhusaidong\IntelligentSpeakers\Aligenie\AliGenie;
+    use Zhusaidong\IntelligentSpeakers\Aligenie\Request;
+    use Zhusaidong\IntelligentSpeakers\Aligenie\Response;
+    
+    $aligenie = new AliGenie(AliGenie::getPrivateKeyFromFile('private_key'), FALSE);
 	```
 	
 	> 私钥,公钥可在 [这里](http://web.chacuo.net/netrsakeypair) 获取
@@ -50,34 +50,6 @@ Welcome to the AliGenie IntelligentSpeakers Doc!
 	$aligenie->response($response);
 	```
 
-- ### 常量说明
-
-	- 请求类型
-
-	```php
-	Request::TYPE_ASK_INF
-		ask information
-		
-	Request::TYPE_RESULT
-		return result
-		
-	Request::TYPE_CONFIRM
-		need confirm
-	```
-	
-	- 回复事件
-	
-	```php
-	Response::CODE_SUCCESS
-		执行成功
-	
-	Response::CODE_PARAMS_ERROR
-		接收到的请求参数出错
-	
-	Response::CODE_EXECUTE_ERROR
-		回复结果生成出错
-	```
-	
 - ### 对象说明
 	
 	- Request对象
@@ -118,5 +90,8 @@ Welcome to the AliGenie IntelligentSpeakers Doc!
 			回复播报语句
 		
 		toAudio($audioId)
-			回复audio id
+		    回复audio id
+  
+        isConfirm()
+            确认回复
 		```

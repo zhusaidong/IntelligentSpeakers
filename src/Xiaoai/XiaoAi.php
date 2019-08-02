@@ -4,10 +4,10 @@
  *
  * @author zhusaidong [zhusaidong@gmail.com]
  */
-namespace IntelligentSpeakers\speakers\xiaoai;
+namespace Zhusaidong\IntelligentSpeakers\Xiaoai;
 
-use IntelligentSpeakers\Speakers;
-use IntelligentSpeakers\speakers\xiaoai\Request as XiaoAiRequest;
+use Zhusaidong\IntelligentSpeakers\Speakers;
+use Zhusaidong\IntelligentSpeakers\Xiaoai\Request as XiaoAiRequest;
 
 class XiaoAi extends Speakers
 {
@@ -19,7 +19,6 @@ class XiaoAi extends Speakers
 	 * verification error
 	 */
 	const VERIFICATION_ERROR = FALSE;
-	
 	private $signMethod = 'MIAI-HmacSHA256-V1';
 	private $keyId;
 	private $secret;
@@ -46,9 +45,9 @@ class XiaoAi extends Speakers
 	 *
 	 * @param $server_key
 	 *
-	 * @return mixed|string
+	 * @return string
 	 */
-	private function getServer($server_key)
+	private function getServer($server_key) : string
 	{
 		return $_SERVER[$server_key] ?? '';
 	}
@@ -99,11 +98,12 @@ class XiaoAi extends Speakers
 	 */
 	protected function __request()
 	{
-		$input = json_decode(file_get_contents('php://input'), TRUE);
-		
-		$this->setLog('request')->setLog($input);
-		
-		$this->request->handle($input);
+		if(($input = json_decode(file_get_contents('php://input'), TRUE)) !== NULL)
+		{
+			$this->setLog('request')->setLog($input);
+			
+			$this->request->handle($input);
+		}
 		
 		return $this;
 	}

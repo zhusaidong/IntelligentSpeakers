@@ -9,13 +9,13 @@ Welcome to the XiaoAi IntelligentSpeakers Doc!
 	- 初始化 api
 
 	```php
-	require('./src/autoload.php');
-	
-	use IntelligentSpeakers\speakers\xiaoai\XiaoAi;
-	use IntelligentSpeakers\speakers\xiaoai\Request;
-	use IntelligentSpeakers\speakers\xiaoai\Response;
-	
-	$xiaoai = new XiaoAi('key_id','secret');
+	require('../vendor/autoload.php');
+    
+    use Zhusaidong\IntelligentSpeakers\Xiaoai\XiaoAi;
+    use Zhusaidong\IntelligentSpeakers\Xiaoai\Request;
+    use Zhusaidong\IntelligentSpeakers\Xiaoai\Response;
+    
+    $xiaoai = new XiaoAi('keyid', 'secret', TRUE);
 	```
 	
 	> `key_id`,`secret` 可在 [这里](https://xiaoai.mi.com/skills/create/list) 获取
@@ -139,3 +139,24 @@ Welcome to the XiaoAi IntelligentSpeakers Doc!
 		registerEvents($eventName)
 			注册事件
 		```
+
+- ### 订阅号技能
+  
+    ```php
+    require('../vendor/autoload.php');
+    
+    use Zhusaidong\IntelligentSpeakers\Xiaoai\Subscription;
+    use Zhusaidong\IntelligentSpeakers\Xiaoai\Feed;
+    
+    $feed1 = new Feed([
+    	'id'          => '1',
+    	'streamUrl'   => 'streamUrl',
+    	'pubDate'     => time() - 1,
+    	'title'       => 'title',
+    	'description' => 'description',
+    	'link'        => 'link',
+    ]);
+    
+    $subscription = new Subscription();
+    $subscription->addFeed($feed1)->toJson();
+    ```

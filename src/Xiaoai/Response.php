@@ -4,13 +4,13 @@
  *
  * @author zhusaidong [zhusaidong@gmail.com]
  */
-namespace IntelligentSpeakers\speakers\xiaoai;
+namespace Zhusaidong\IntelligentSpeakers\Xiaoai;
 
-use IntelligentSpeakers\Response as BaseResponse;
-use IntelligentSpeakers\Request as BaseRequest;
+use Zhusaidong\IntelligentSpeakers\Interfaces\RequestInterface;
+use Zhusaidong\IntelligentSpeakers\Interfaces\ResponseInterface;
 use Exception;
 
-class Response extends BaseResponse
+class Response implements ResponseInterface
 {
 	/**
 	 * EVENT MEDIAPLAYER
@@ -37,7 +37,6 @@ class Response extends BaseResponse
 	 *    指导小爱智能设备开始播放录音
 	 */
 	const ACTION_PLAY_MSG = 'play_msg';
-	
 	/**
 	 * @var array $registerActions register actions
 	 */
@@ -151,26 +150,21 @@ class Response extends BaseResponse
 	}
 	
 	/**
-	 * get response
-	 *
-	 * @param BaseRequest $request
-	 * @param array       $params
-	 *
-	 * @return array
+	 * @inheritDoc
 	 * @throws Exception
 	 */
-	public function getResponse(BaseRequest $request, array $params = []) : array
+	public function getResponse(RequestInterface $request, array $params = []) : array
 	{
 		$exit = $request->requestType == Request::TYPE_END;
 		
-		$response                   = [
+		$response = [
 			'version'        => '1.0',
 			'is_session_end' => !!$exit,
 			'response'       => [
 				'open_mic' => !$exit,
 			],
+			'not_understand' => $request->noResponse,
 		];
-		$response['not_understand'] = $request->noResponse;
 		
 		if(!empty($this->registerActions))
 		{

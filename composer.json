@@ -1,5 +1,5 @@
 {
-	"name"             :"zhusaidong/IntelligentSpeakers",
+	"name"             :"zhusaidong/intelligent-speakers",
 	"description"      :"intelligent speakers",
 	"minimum-stability":"dev",
 	"license"          :"MIT",
@@ -11,12 +11,13 @@
 	],
 	"autoload"         :{
 		"psr-4":{
-			"IntelligentSpeakers\\":"src/"
+			"Zhusaidong\\IntelligentSpeakers\\":"src/"
 		}
 	},
 	"require"          :{
-		"php"        :"^7.1",
+		"php"        :">=7.1",
 		"ext-openssl":"*",
-		"ext-json"   :"*"
+		"ext-json"   :"*",
+		"ext-dom"    :"*"
 	}
 }

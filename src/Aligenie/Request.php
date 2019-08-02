@@ -4,25 +4,12 @@
  *
  * @author zhusaidong [zhusaidong@gmail.com]
  */
-namespace IntelligentSpeakers\speakers\aligenie;
+namespace Zhusaidong\IntelligentSpeakers\Aligenie;
 
-use IntelligentSpeakers\Request as BaseRequest;
+use Zhusaidong\IntelligentSpeakers\Interfaces\RequestInterface;
 
-class Request extends BaseRequest
+class Request implements RequestInterface
 {
-	/**
-	 * ask information
-	 */
-	const TYPE_ASK_INF = 'ASK_INF';
-	/**
-	 * return result
-	 */
-	const TYPE_RESULT = 'RESULT';
-	/**
-	 * need confirm
-	 */
-	const TYPE_CONFIRM = 'CONFIRM';
-	
 	/**
 	 * @var mixed $sessionId session id
 	 */
@@ -75,14 +62,13 @@ class Request extends BaseRequest
 		isset($input['token']) and $this->token = $input['token'];
 		
 		$this->slots = [];
-		
 		if(!empty($this->slotEntities))
 		{
 			foreach($this->slotEntities as $slotEntity)
 			{
 				$this->slots[] = [
 					'intentName'    => $slotEntity['intentParameterName'],
-					'liveTime'      => $slotEntity['liveTime'],        //slot live time
+					'liveTime'      => $slotEntity['liveTime'],         //slot live time
 					'originalValue' => $slotEntity['originalValue'],    //original value
 					'standardValue' => $slotEntity['standardValue'],    //standard value
 				];

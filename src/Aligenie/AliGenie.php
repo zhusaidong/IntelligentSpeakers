@@ -4,10 +4,10 @@
  *
  * @author zhusaidong [zhusaidong@gmail.com]
  */
-namespace IntelligentSpeakers\speakers\aligenie;
+namespace Zhusaidong\IntelligentSpeakers\Aligenie;
 
-use IntelligentSpeakers\Speakers;
-use IntelligentSpeakers\speakers\aligenie\Request as AliGenieRequest;
+use Zhusaidong\IntelligentSpeakers\Speakers;
+use Zhusaidong\IntelligentSpeakers\Aligenie\Request as AliGenieRequest;
 use Exception;
 
 class AliGenie extends Speakers
@@ -38,7 +38,7 @@ class AliGenie extends Speakers
 	 */
 	public static function getPrivateKeyFromFile(string $privateKeyPath) : string
 	{
-		return file_get_contents($privateKeyPath);
+		return is_file($privateKeyPath) ? file_get_contents($privateKeyPath) : '';
 	}
 	
 	/**
@@ -75,20 +75,21 @@ class AliGenie extends Speakers
 	 */
 	protected function __request()
 	{
-		$_input = file_get_contents('php://input');
-		$input  = json_decode($_input, TRUE);
-		//需要解密
-		if($this->privateKey != NULL)
+		if(($input = json_decode(file_get_contents('php://input'), TRUE)) !== NULL)
 		{
-			if(($deInput = $this->privateKeyDecrypt($input['securityQuery'], $this->privateKey)) === FALSE)
+			//需要解密
+			if($this->privateKey != NULL)
 			{
-				throw new Exception('解密失败');
+				if(($deInput = $this->privateKeyDecrypt($input['securityQuery'], $this->privateKey)) === FALSE)
+				{
+					throw new Exception('解密失败');
+				}
+				$input = json_decode($deInput, TRUE);
 			}
-			$input = json_decode($deInput, TRUE);
+			
+			$this->setLog('request')->setLog($input);
+			$this->request->handle($input);
 		}
-		
-		$this->setLog('request')->setLog($input);
-		$this->request->handle($input);
 		
 		return $this;
 	}

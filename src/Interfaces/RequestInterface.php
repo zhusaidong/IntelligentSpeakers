@@ -5,9 +5,9 @@
  * @author zhusaidong [zhusaidong@gmail.com]
  */
 
-namespace IntelligentSpeakers;
+namespace Zhusaidong\IntelligentSpeakers\Interfaces;
 
-abstract class Request
+interface RequestInterface
 {
 	/**
 	 * request handle
@@ -16,5 +16,5 @@ abstract class Request
 	 *
 	 * @return mixed
 	 */
-	public abstract function handle(array $input);
+	public function handle(array $input);
 }

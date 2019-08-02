@@ -1,11 +1,17 @@
 <?php
-require('./vendor/autoload.php');
+/**
+ * 小爱 demo
+ *
+ * @author zhusaidong [zhusaidong@gmail.com]
+ */
 
-use IntelligentSpeakers\speakers\xiaoai\XiaoAi;
-use IntelligentSpeakers\speakers\xiaoai\Request;
-use IntelligentSpeakers\speakers\xiaoai\Response;
+require('../vendor/autoload.php');
 
-$xiaoai = new XiaoAi('keyid', 'secret', TRUE);
+use Zhusaidong\IntelligentSpeakers\Xiaoai\XiaoAi;
+use Zhusaidong\IntelligentSpeakers\Xiaoai\Request;
+use Zhusaidong\IntelligentSpeakers\Xiaoai\Response;
+
+$xiaoai = new XiaoAi('keyid', 'secret', FALSE);
 
 $request = $xiaoai->getRequest();
 

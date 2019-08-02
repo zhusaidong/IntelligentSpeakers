@@ -4,11 +4,11 @@
  *
  * @author zhusaidong [zhusaidong@gmail.com]
  */
-namespace IntelligentSpeakers\speakers\xiaoai;
+namespace Zhusaidong\IntelligentSpeakers\Xiaoai;
 
-use IntelligentSpeakers\Request as BaseRequest;
+use Zhusaidong\IntelligentSpeakers\Interfaces\RequestInterface;
 
-class Request extends BaseRequest
+class Request implements RequestInterface
 {
 	const NO_REQUEST = -1;
 	/**
