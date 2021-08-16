@@ -18,7 +18,7 @@ Welcome to the XiaoAi IntelligentSpeakers Doc!
     $xiaoai = new XiaoAi('keyid', 'secret', TRUE);
 	```
 	
-	> `key_id`,`secret` 可在 [这里](https://xiaoai.mi.com/skills/create/list) 获取
+	> `key_id`,`secret` 可在 [这里](https://developers.xiaoai.mi.com/skills/create/list) 获取
 
 	- 校验消息
 
